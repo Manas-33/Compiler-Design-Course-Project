@@ -37,11 +37,111 @@ return	N/A	Keyword		37
 
 								 PHASE 2: SYNTAX ANALYSIS 
 
+Parse Tree:
+            1
+        RETURN
+            return
+    main
+                                                                1
+                                                            =
+                                                                a
+                                                        for
+                                                                        ++
+                                                                    ITERATOR
+                                                                        j
+                                                                CONDITION
+                                                                        z
+                                                                    <
+                                                                        j
+                                                            CONDITION
+                                                                    0
+                                                                declaration
+                                                                    j
+                                                    statements
+                                                        if-else
+                                                                printf
+                                                            if
+                                                                    5
+                                                                >
+                                                                    x
+                                                statements
+                                                    scanf
+                                            statements
+                                                printf
+                                        for
+                                                        ++
+                                                    ITERATOR
+                                                        i
+                                                CONDITION
+                                                        10
+                                                    <
+                                                        i
+                                            CONDITION
+                                                    0
+                                                declaration
+                                                    i
+                                    statements
+                                                    1
+                                                declaration
+                                                    idx
+                                            else
+                                        if-else
+                                                        printf
+                                                    statements
+                                                                3
+                                                            +
+                                                                x
+                                                        =
+                                                            y
+                                                for
+                                                                ++
+                                                            ITERATOR
+                                                                k
+                                                        CONDITION
+                                                                10
+                                                            <
+                                                                k
+                                                    CONDITION
+                                                            0
+                                                        declaration
+                                                            k
+                                            if
+                                                    5
+                                                >
+                                                    x
+                                statements
+                                        5
+                                    =
+                                        z
+                            statements
+                                    10
+                                =
+                                    y
+                        statements
+                                3
+                            =
+                                x
+                    statements
+                            3
+                        declaration
+                            z
+                statements
+                        2
+                    declaration
+                        y
+            statements
+                    1
+                declaration
+                    x
+        statements
+                NULL
+            declaration
+                a
+program
+        #include <string.h>
+    headers
+        #include <stdio.h>
 
-
-Inorder traversal of the Parse Tree is: 
-
-#include <stdio.h>, headers, #include <string.h>, program, a, declaration, NULL, statements, x, declaration, 1, statements, y, declaration, 2, statements, z, declaration, 3, statements, x, =, 3, statements, y, =, 10, statements, z, =, 5, statements, x, >, 5, if, k, declaration, 0, CONDITION, k, <, 10, CONDITION, k, ITERATOR, ++, for, y, =, x, +, 3, statements, printf, if-else, else, idx, declaration, 1, statements, i, declaration, 0, CONDITION, i, <, 10, CONDITION, i, ITERATOR, ++, for, printf, statements, scanf, statements, x, >, 5, if, printf, if-else, statements, j, declaration, 0, CONDITION, j, <, z, CONDITION, j, ITERATOR, ++, for, a, =, 1, main, return, RETURN, 1, 
 
 
 

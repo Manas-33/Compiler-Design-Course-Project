@@ -2257,6 +2257,54 @@ yyreturn:
 /* Line 1675 of yacc.c  */
 #line 316 ".\\compiler.y"
 
+/* 
+void print_tree_util(struct node* root, int level) {
+    if (root == NULL)
+        return;
+
+    // Recursive call for right child
+    print_tree_util(root->right, level + 1);
+
+    // Print the current node
+    for (int i = 0; i < level; i++) {
+        printf("    "); // Indentation for tree structure
+    }
+    printf("|-- %s\n", root->token);
+
+    // Recursive call for left child
+    print_tree_util(root->left, level + 1);
+}
+
+void print_tree(struct node* tree) {
+    printf("Parse Tree:\n");
+    print_tree_util(tree, 0);
+} */
+
+
+void print_tree_util(struct node* root, int space) {
+    if (root == NULL)
+        return;
+
+    // Increase the indentation for the right child
+    space += 4;
+
+    // Recursively print the right subtree
+    print_tree_util(root->right, space);
+
+    // Print the current node with indentation
+    for (int i = 4; i < space; i++) {
+        printf(" ");
+    }
+    printf("%s\n", root->token);
+
+    // Recursively print the left subtree
+    print_tree_util(root->left, space);
+}
+
+void print_tree(struct node* tree) {
+    printf("Parse Tree:\n");
+    print_tree_util(tree, 0);
+}
 
 int main(int argc, char *argv[]) {
     yyin = fopen(argv[1], "r");
@@ -2428,11 +2476,11 @@ struct node* mknode(struct node *left, struct node *right, char *token) {
 	return(newnode);
 }
 
-void print_tree(struct node* tree) {
+/* void print_tree(struct node* tree) {
 	// print_tree_util(tree, 0);
 	printf("\n\nInorder traversal of the Parse Tree is: \n\n");
 	print_inorder(tree);
-}
+} */
 
 void print_inorder(struct node *tree) {
 	int i;
@@ -2445,7 +2493,7 @@ void print_inorder(struct node *tree) {
 	}
 }
 
-void print_tree_util(struct node *root, int space) {
+/* void print_tree_util(struct node *root, int space) {
     if(root == NULL)
         return;
     space += 7;
@@ -2454,7 +2502,7 @@ void print_tree_util(struct node *root, int space) {
         printf(" ");
 	printf("%s\n", root->token);
     print_tree_util(root->left, space);
-}
+} */
 
 void insert_type() {
 	strcpy(type, yytext);
