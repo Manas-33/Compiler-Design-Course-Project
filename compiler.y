@@ -77,8 +77,9 @@
 %%
 
 program: headers main '(' ')' '{' body return '}' { $2.nd = mknode($6.nd, $7.nd, "main"); $$.nd = mknode($1.nd, $2.nd, "program"); 
-	head = $$.nd;
-} 
+    head = $$.nd;
+    is_for = 0; // Add this line to reset the flag
+}
 ;
 
 headers: headers headers { $$.nd = mknode($1.nd, $2.nd, "headers"); }
@@ -95,13 +96,14 @@ datatype: INT { insert_type(); }
 ;
 
 body: FOR { add('K'); is_for = 1; } '(' statement ';' condition ';' statement ')' '{' body '}' { 
-	struct node *temp = mknode($6.nd, $8.nd, "CONDITION"); 
-	struct node *temp2 = mknode($4.nd, temp, "CONDITION"); 
-	$$.nd = mknode(temp2, $11.nd, $1.name); 
-	sprintf(icg[ic_idx++], buff);
-	sprintf(icg[ic_idx++], "JUMP to %s\n", $6.if_body);
-	sprintf(icg[ic_idx++], "\nLABEL %s:\n", $6.else_body);
+    struct node *temp = mknode($6.nd, $8.nd, "CONDITION"); 
+    struct node *temp2 = mknode($4.nd, temp, "CONDITION"); 
+    $$.nd = mknode(temp2, $11.nd, $1.name);
+    sprintf(icg[ic_idx++], buff);
+    sprintf(icg[ic_idx++], "LABEL %s:\n", $6.if_body);
+    sprintf(icg[ic_idx++], "JUMP to %s\n", $6.else_body);
 }
+
 | IF { add('K'); is_for = 0; } '(' condition ')' { sprintf(icg[ic_idx++], "\nLABEL %s:\n", $4.if_body); } '{' body '}' { sprintf(icg[ic_idx++], "\nLABEL %s:\n", $4.else_body); } else { 
 	struct node *iff = mknode($4.nd, $8.nd, $1.name); 
 	$$.nd = mknode(iff, $11.nd, "if-else"); 
@@ -118,18 +120,19 @@ else: ELSE { add('K'); } '{' body '}' { $$.nd = mknode(NULL, $4.nd, $1.name); }
 ;
 
 condition: value relop value { 
-	$$.nd = mknode($1.nd, $3.nd, $2.name); 
-	if(is_for) {
-		sprintf($$.if_body, "L%d", label++);
-		sprintf(icg[ic_idx++], "\nLABEL %s:\n", $$.if_body);
-		sprintf(icg[ic_idx++], "\nif NOT (%s %s %s) GOTO L%d\n", $1.name, $2.name, $3.name, label);
-		sprintf($$.else_body, "L%d", label++);
-	} else {
-		sprintf(icg[ic_idx++], "\nif (%s %s %s) GOTO L%d else GOTO L%d\n", $1.name, $2.name, $3.name, label, label+1);
-		sprintf($$.if_body, "L%d", label++);
-		sprintf($$.else_body, "L%d", label++);
-	}
+    $$.nd = mknode($1.nd, $3.nd, $2.name); 
+    if (is_for) {
+        sprintf($$.if_body, "L%d", label++);
+        sprintf(icg[ic_idx++], "LABEL %s:\n", $$.if_body);
+        sprintf(icg[ic_idx++], "if NOT (%s %s %s) GOTO L%d\n", $1.name, $2.name, $3.name, label);
+        sprintf($$.else_body, "L%d", label++);
+    } else {
+        sprintf(icg[ic_idx++], "if (%s %s %s) GOTO L%d else GOTO L%d\n", $1.name, $2.name, $3.name, label, label + 1);
+        sprintf($$.if_body, "L%d", label++);
+        sprintf($$.else_body, "L%d", label++);
+    }
 }
+
 | TRUE { add('K'); $$.nd = NULL; }
 | FALSE { add('K'); $$.nd = NULL; }
 | { $$.nd = NULL; }
