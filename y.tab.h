@@ -113,7 +113,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 52 ".\\compiler.y"
+#line 53 ".\\compiler.y"
  struct var_name { 
 			char name[100]; 
 			struct node* nd;

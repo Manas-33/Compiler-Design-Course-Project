@@ -620,7 +620,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 12 ".\\custom_compiler.l"
+#line 11 ".\\custom_compiler.l"
 
 
 #line 627 "lex.yy.c"
@@ -717,187 +717,187 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 14 ".\\custom_compiler.l"
-{ return PRINTFF; }
+#line 13 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return PRINTFF; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 ".\\custom_compiler.l"
-{ return SCANFF; }
+#line 14 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return SCANFF; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 ".\\custom_compiler.l"
-{ return INT; }
+#line 15 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return INT; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 ".\\custom_compiler.l"
-{ return FLOAT; }
+#line 16 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return FLOAT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 ".\\custom_compiler.l"
-{ return CHAR; }
+#line 17 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return CHAR; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 ".\\custom_compiler.l"
-{ return VOID; }
+#line 18 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return VOID; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 20 ".\\custom_compiler.l"
-{ return RETURN; }
+#line 19 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return RETURN; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 21 ".\\custom_compiler.l"
-{ return FOR; }
+#line 20 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return FOR; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 22 ".\\custom_compiler.l"
-{ return IF; }
+#line 21 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return IF; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 23 ".\\custom_compiler.l"
-{ return ELSE; }
+#line 22 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return ELSE; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 24 ".\\custom_compiler.l"
-{ return INCLUDE; }
+#line 23 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return INCLUDE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 25 ".\\custom_compiler.l"
-{ return TRUE; }
+#line 24 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return TRUE; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 26 ".\\custom_compiler.l"
-{ return FALSE; }
+#line 25 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return FALSE; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 27 ".\\custom_compiler.l"
-{ return NUMBER; }
+#line 26 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return NUMBER; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 28 ".\\custom_compiler.l"
-{ return FLOAT_NUM; }
+#line 27 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return FLOAT_NUM; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 29 ".\\custom_compiler.l"
-{ return ID; }
+#line 28 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return ID; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 30 ".\\custom_compiler.l"
-{ return UNARY; }
+#line 29 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return UNARY; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 31 ".\\custom_compiler.l"
-{ return LE; }
+#line 30 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return LE; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 32 ".\\custom_compiler.l"
-{ return GE; }
+#line 31 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return GE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 33 ".\\custom_compiler.l"
-{ return EQ; }
+#line 32 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return EQ; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 34 ".\\custom_compiler.l"
-{ return NE; }
+#line 33 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return NE; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 35 ".\\custom_compiler.l"
-{ return GT; }
+#line 34 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return GT; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 36 ".\\custom_compiler.l"
-{ return LT; }
+#line 35 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return LT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 37 ".\\custom_compiler.l"
-{ return AND; }
+#line 36 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return AND; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 38 ".\\custom_compiler.l"
-{ return OR; }
+#line 37 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return OR; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 39 ".\\custom_compiler.l"
-{ return ADD; }
+#line 38 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return ADD; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 40 ".\\custom_compiler.l"
-{ return SUBTRACT; }
+#line 39 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return SUBTRACT; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 41 ".\\custom_compiler.l"
-{ return DIVIDE; }
+#line 40 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return DIVIDE; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 42 ".\\custom_compiler.l"
-{ return MULTIPLY; }
+#line 41 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return MULTIPLY; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 43 ".\\custom_compiler.l"
+#line 42 ".\\custom_compiler.l"
 { ; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 44 ".\\custom_compiler.l"
+#line 43 ".\\custom_compiler.l"
 { ; } 
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 45 ".\\custom_compiler.l"
+#line 44 ".\\custom_compiler.l"
 { ; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 46 ".\\custom_compiler.l"
+#line 45 ".\\custom_compiler.l"
 { countn++; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 47 ".\\custom_compiler.l"
+#line 46 ".\\custom_compiler.l"
 { return *yytext; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 48 ".\\custom_compiler.l"
-{ return STR; }
+#line 47 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return STR; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 49 ".\\custom_compiler.l"
-{ return CHARACTER; }
+#line 48 ".\\custom_compiler.l"
+{ strcpy(yylval.nd_obj.name,(yytext)); return CHARACTER; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 51 ".\\custom_compiler.l"
+#line 50 ".\\custom_compiler.l"
 ECHO;
 	YY_BREAK
 #line 904 "lex.yy.c"
@@ -1786,9 +1786,9 @@ int main()
 	return 0;
 	}
 #endif
-#line 51 ".\\custom_compiler.l"
+#line 50 ".\\custom_compiler.l"
 
 
 int yywrap() {
-    return 1;
+return 1;
 }

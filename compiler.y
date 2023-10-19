@@ -12,6 +12,7 @@
     int search(char *);
 	void insert_type();
 	void print_tree(struct node*);
+	void print_tree_util(struct node*, int);
 	void print_inorder(struct node *);
     void check_declaration(char *);
 	void check_return_type(char *);
@@ -322,7 +323,6 @@ int main(int argc, char *argv[]) {
 	{
 			printf("\nPARSING FAILED!\n\n\n");
 	};
-    yyparse();
     printf("\n\n");
 	printf("\t\t\t\t\t\t\t\t PHASE 1: LEXICAL ANALYSIS \n\n");
 	printf("\nSYMBOL   DATATYPE   TYPE   LINE NUMBER \n");
@@ -483,6 +483,7 @@ struct node* mknode(struct node *left, struct node *right, char *token) {
 }
 
 void print_tree(struct node* tree) {
+	// print_tree_util(tree, 0);
 	printf("\n\nInorder traversal of the Parse Tree is: \n\n");
 	print_inorder(tree);
 }
@@ -498,10 +499,21 @@ void print_inorder(struct node *tree) {
 	}
 }
 
+void print_tree_util(struct node *root, int space) {
+    if(root == NULL)
+        return;
+    space += 7;
+    print_tree_util(root->right, space);
+    for (int i = 7; i < space; i++)
+        printf(" ");
+	printf("%s\n", root->token);
+    print_tree_util(root->left, space);
+}
+
 void insert_type() {
 	strcpy(type, yytext);
 }
 
 void yyerror(const char* msg) {
-    fprintf(stderr, "%s\n", msg);
+    fprintf(stderr,"%s\n",msg);
 }

@@ -83,6 +83,7 @@
     int search(char *);
 	void insert_type();
 	void print_tree(struct node*);
+	void print_tree_util(struct node*, int);
 	void print_inorder(struct node *);
     void check_declaration(char *);
 	void check_return_type(char *);
@@ -121,7 +122,7 @@
 
 
 /* Line 189 of yacc.c  */
-#line 125 "y.tab.c"
+#line 126 "y.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -222,7 +223,7 @@ typedef union YYSTYPE
 {
 
 /* Line 214 of yacc.c  */
-#line 52 ".\\compiler.y"
+#line 53 ".\\compiler.y"
  struct var_name { 
 			char name[100]; 
 			struct node* nd;
@@ -244,7 +245,7 @@ typedef union YYSTYPE
 
 
 /* Line 214 of yacc.c  */
-#line 248 "y.tab.c"
+#line 249 "y.tab.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -256,7 +257,7 @@ typedef union YYSTYPE
 
 
 /* Line 264 of yacc.c  */
-#line 260 "y.tab.c"
+#line 261 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -562,12 +563,12 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,    78,    78,    83,    84,    84,    87,    90,    91,    92,
-      93,    96,    96,   104,   104,   104,   104,   109,   110,   111,
-     111,   112,   112,   115,   115,   116,   119,   132,   133,   134,
-     137,   137,   171,   171,   213,   213,   214,   214,   225,   240,
-     241,   244,   285,   288,   289,   290,   291,   294,   295,   296,
-     297,   298,   299,   302,   303,   304,   305,   308,   308,   309
+       0,    79,    79,    84,    85,    85,    88,    91,    92,    93,
+      94,    97,    97,   106,   106,   106,   106,   111,   112,   113,
+     113,   114,   114,   117,   117,   118,   121,   134,   135,   136,
+     139,   139,   173,   173,   215,   215,   216,   216,   227,   242,
+     243,   246,   287,   290,   291,   292,   293,   296,   297,   298,
+     299,   300,   301,   304,   305,   306,   307,   310,   310,   311
 };
 #endif
 
@@ -1544,7 +1545,7 @@ yyreduce:
         case 2:
 
 /* Line 1455 of yacc.c  */
-#line 78 ".\\compiler.y"
+#line 79 ".\\compiler.y"
     { (yyvsp[(2) - (8)].nd_obj).nd = mknode((yyvsp[(6) - (8)].nd_obj).nd, (yyvsp[(7) - (8)].nd_obj).nd, "main"); (yyval.nd_obj).nd = mknode((yyvsp[(1) - (8)].nd_obj).nd, (yyvsp[(2) - (8)].nd_obj).nd, "program"); 
 	head = (yyval.nd_obj).nd;
 }
@@ -1553,105 +1554,105 @@ yyreduce:
   case 3:
 
 /* Line 1455 of yacc.c  */
-#line 83 ".\\compiler.y"
+#line 84 ".\\compiler.y"
     { (yyval.nd_obj).nd = mknode((yyvsp[(1) - (2)].nd_obj).nd, (yyvsp[(2) - (2)].nd_obj).nd, "headers"); }
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 84 ".\\compiler.y"
+#line 85 ".\\compiler.y"
     { add('H'); }
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 84 ".\\compiler.y"
+#line 85 ".\\compiler.y"
     { (yyval.nd_obj).nd = mknode(NULL, NULL, (yyvsp[(1) - (2)].nd_obj).name); }
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 87 ".\\compiler.y"
+#line 88 ".\\compiler.y"
     { add('F'); }
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 90 ".\\compiler.y"
+#line 91 ".\\compiler.y"
     { insert_type(); }
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 91 ".\\compiler.y"
+#line 92 ".\\compiler.y"
     { insert_type(); }
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 92 ".\\compiler.y"
+#line 93 ".\\compiler.y"
     { insert_type(); }
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 93 ".\\compiler.y"
+#line 94 ".\\compiler.y"
     { insert_type(); }
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 96 ".\\compiler.y"
+#line 97 ".\\compiler.y"
     { add('K'); is_for = 1; }
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 96 ".\\compiler.y"
+#line 97 ".\\compiler.y"
     { 
-	struct node *temp = mknode((yyvsp[(6) - (12)].nd_obj3).nd, (yyvsp[(8) - (12)].nd_obj).nd, "CONDITION"); 
-	struct node *temp2 = mknode((yyvsp[(4) - (12)].nd_obj).nd, temp, "CONDITION"); 
-	(yyval.nd_obj).nd = mknode(temp2, (yyvsp[(11) - (12)].nd_obj).nd, (yyvsp[(1) - (12)].nd_obj).name); 
-	sprintf(icg[ic_idx++], buff);
-	sprintf(icg[ic_idx++], "JUMP to %s\n", (yyvsp[(6) - (12)].nd_obj3).if_body);
-	sprintf(icg[ic_idx++], "\nLABEL %s:\n", (yyvsp[(6) - (12)].nd_obj3).else_body);
+    struct node *temp = mknode((yyvsp[(6) - (12)].nd_obj3).nd, (yyvsp[(8) - (12)].nd_obj).nd, "CONDITION"); 
+    struct node *temp2 = mknode((yyvsp[(4) - (12)].nd_obj).nd, temp, "CONDITION"); 
+    (yyval.nd_obj).nd = mknode(temp2, (yyvsp[(11) - (12)].nd_obj).nd, (yyvsp[(1) - (12)].nd_obj).name);
+    sprintf(icg[ic_idx++], buff);
+    sprintf(icg[ic_idx++], "LABEL %s:\n", (yyvsp[(6) - (12)].nd_obj3).if_body);
+    sprintf(icg[ic_idx++], "JUMP to %s\n", (yyvsp[(6) - (12)].nd_obj3).else_body);
 }
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 104 ".\\compiler.y"
+#line 106 ".\\compiler.y"
     { add('K'); is_for = 0; }
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 104 ".\\compiler.y"
+#line 106 ".\\compiler.y"
     { sprintf(icg[ic_idx++], "\nLABEL %s:\n", (yyvsp[(4) - (5)].nd_obj3).if_body); }
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 104 ".\\compiler.y"
+#line 106 ".\\compiler.y"
     { sprintf(icg[ic_idx++], "\nLABEL %s:\n", (yyvsp[(4) - (9)].nd_obj3).else_body); }
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 104 ".\\compiler.y"
+#line 106 ".\\compiler.y"
     { 
 	struct node *iff = mknode((yyvsp[(4) - (11)].nd_obj3).nd, (yyvsp[(8) - (11)].nd_obj).nd, (yyvsp[(1) - (11)].nd_obj).name); 
 	(yyval.nd_obj).nd = mknode(iff, (yyvsp[(11) - (11)].nd_obj).nd, "if-else"); 
@@ -1662,70 +1663,70 @@ yyreduce:
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 109 ".\\compiler.y"
+#line 111 ".\\compiler.y"
     { (yyval.nd_obj).nd = (yyvsp[(1) - (2)].nd_obj).nd; }
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 110 ".\\compiler.y"
+#line 112 ".\\compiler.y"
     { (yyval.nd_obj).nd = mknode((yyvsp[(1) - (2)].nd_obj).nd, (yyvsp[(2) - (2)].nd_obj).nd, "statements"); }
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 111 ".\\compiler.y"
+#line 113 ".\\compiler.y"
     { add('K'); }
     break;
 
   case 20:
 
 /* Line 1455 of yacc.c  */
-#line 111 ".\\compiler.y"
+#line 113 ".\\compiler.y"
     { (yyval.nd_obj).nd = mknode(NULL, NULL, "printf"); }
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 112 ".\\compiler.y"
+#line 114 ".\\compiler.y"
     { add('K'); }
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 112 ".\\compiler.y"
+#line 114 ".\\compiler.y"
     { (yyval.nd_obj).nd = mknode(NULL, NULL, "scanf"); }
     break;
 
   case 23:
 
 /* Line 1455 of yacc.c  */
-#line 115 ".\\compiler.y"
+#line 117 ".\\compiler.y"
     { add('K'); }
     break;
 
   case 24:
 
 /* Line 1455 of yacc.c  */
-#line 115 ".\\compiler.y"
+#line 117 ".\\compiler.y"
     { (yyval.nd_obj).nd = mknode(NULL, (yyvsp[(4) - (5)].nd_obj).nd, (yyvsp[(1) - (5)].nd_obj).name); }
     break;
 
   case 25:
 
 /* Line 1455 of yacc.c  */
-#line 116 ".\\compiler.y"
+#line 118 ".\\compiler.y"
     { (yyval.nd_obj).nd = NULL; }
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 119 ".\\compiler.y"
+#line 121 ".\\compiler.y"
     { 
 	(yyval.nd_obj3).nd = mknode((yyvsp[(1) - (3)].nd_obj2).nd, (yyvsp[(3) - (3)].nd_obj2).nd, (yyvsp[(2) - (3)].nd_obj).name); 
 	if(is_for) {
@@ -1744,35 +1745,35 @@ yyreduce:
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 132 ".\\compiler.y"
+#line 134 ".\\compiler.y"
     { add('K'); (yyval.nd_obj3).nd = NULL; }
     break;
 
   case 28:
 
 /* Line 1455 of yacc.c  */
-#line 133 ".\\compiler.y"
+#line 135 ".\\compiler.y"
     { add('K'); (yyval.nd_obj3).nd = NULL; }
     break;
 
   case 29:
 
 /* Line 1455 of yacc.c  */
-#line 134 ".\\compiler.y"
+#line 136 ".\\compiler.y"
     { (yyval.nd_obj3).nd = NULL; }
     break;
 
   case 30:
 
 /* Line 1455 of yacc.c  */
-#line 137 ".\\compiler.y"
+#line 139 ".\\compiler.y"
     { add('V'); }
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 137 ".\\compiler.y"
+#line 139 ".\\compiler.y"
     { 
 	(yyvsp[(2) - (4)].nd_obj).nd = mknode(NULL, NULL, (yyvsp[(2) - (4)].nd_obj).name); 
 	int t = check_types((yyvsp[(1) - (4)].nd_obj).name, (yyvsp[(4) - (4)].nd_obj2).type); 
@@ -1812,14 +1813,14 @@ yyreduce:
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 171 ".\\compiler.y"
+#line 173 ".\\compiler.y"
     { check_declaration((yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 171 ".\\compiler.y"
+#line 173 ".\\compiler.y"
     {
 	(yyvsp[(1) - (4)].nd_obj).nd = mknode(NULL, NULL, (yyvsp[(1) - (4)].nd_obj).name); 
 	char *id_type = get_type((yyvsp[(1) - (4)].nd_obj).name); 
@@ -1867,28 +1868,28 @@ yyreduce:
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 213 ".\\compiler.y"
+#line 215 ".\\compiler.y"
     { check_declaration((yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 213 ".\\compiler.y"
+#line 215 ".\\compiler.y"
     { (yyvsp[(1) - (4)].nd_obj).nd = mknode(NULL, NULL, (yyvsp[(1) - (4)].nd_obj).name); (yyval.nd_obj).nd = mknode((yyvsp[(1) - (4)].nd_obj).nd, (yyvsp[(4) - (4)].nd_obj2).nd, (yyvsp[(3) - (4)].nd_obj).name); }
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 214 ".\\compiler.y"
+#line 216 ".\\compiler.y"
     { check_declaration((yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 214 ".\\compiler.y"
+#line 216 ".\\compiler.y"
     { 
 	(yyvsp[(1) - (3)].nd_obj).nd = mknode(NULL, NULL, (yyvsp[(1) - (3)].nd_obj).name); 
 	(yyvsp[(3) - (3)].nd_obj).nd = mknode(NULL, NULL, (yyvsp[(3) - (3)].nd_obj).name); 
@@ -1905,7 +1906,7 @@ yyreduce:
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 225 ".\\compiler.y"
+#line 227 ".\\compiler.y"
     { 
 	check_declaration((yyvsp[(2) - (2)].nd_obj).name); 
 	(yyvsp[(1) - (2)].nd_obj).nd = mknode(NULL, NULL, (yyvsp[(1) - (2)].nd_obj).name); 
@@ -1924,21 +1925,21 @@ yyreduce:
   case 39:
 
 /* Line 1455 of yacc.c  */
-#line 240 ".\\compiler.y"
+#line 242 ".\\compiler.y"
     { (yyval.nd_obj2).nd = (yyvsp[(2) - (2)].nd_obj2).nd; sprintf((yyval.nd_obj2).type, (yyvsp[(2) - (2)].nd_obj2).type); strcpy((yyval.nd_obj2).name, (yyvsp[(2) - (2)].nd_obj2).name); }
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 241 ".\\compiler.y"
+#line 243 ".\\compiler.y"
     { sprintf((yyval.nd_obj2).type, "null"); (yyval.nd_obj2).nd = mknode(NULL, NULL, "NULL"); strcpy((yyval.nd_obj2).name, "NULL"); }
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 244 ".\\compiler.y"
+#line 246 ".\\compiler.y"
     { 
 	if(!strcmp((yyvsp[(1) - (3)].nd_obj2).type, (yyvsp[(3) - (3)].nd_obj2).type)) {
 		sprintf((yyval.nd_obj2).type, (yyvsp[(1) - (3)].nd_obj2).type);
@@ -1985,63 +1986,63 @@ yyreduce:
   case 42:
 
 /* Line 1455 of yacc.c  */
-#line 285 ".\\compiler.y"
+#line 287 ".\\compiler.y"
     { strcpy((yyval.nd_obj2).name, (yyvsp[(1) - (1)].nd_obj2).name); sprintf((yyval.nd_obj2).type, (yyvsp[(1) - (1)].nd_obj2).type); (yyval.nd_obj2).nd = (yyvsp[(1) - (1)].nd_obj2).nd; }
     break;
 
   case 53:
 
 /* Line 1455 of yacc.c  */
-#line 302 ".\\compiler.y"
+#line 304 ".\\compiler.y"
     { strcpy((yyval.nd_obj2).name, (yyvsp[(1) - (1)].nd_obj).name); sprintf((yyval.nd_obj2).type, "int"); add('C'); (yyval.nd_obj2).nd = mknode(NULL, NULL, (yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 303 ".\\compiler.y"
+#line 305 ".\\compiler.y"
     { strcpy((yyval.nd_obj2).name, (yyvsp[(1) - (1)].nd_obj).name); sprintf((yyval.nd_obj2).type, "float"); add('C'); (yyval.nd_obj2).nd = mknode(NULL, NULL, (yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 55:
 
 /* Line 1455 of yacc.c  */
-#line 304 ".\\compiler.y"
+#line 306 ".\\compiler.y"
     { strcpy((yyval.nd_obj2).name, (yyvsp[(1) - (1)].nd_obj).name); sprintf((yyval.nd_obj2).type, "char"); add('C'); (yyval.nd_obj2).nd = mknode(NULL, NULL, (yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 305 ".\\compiler.y"
+#line 307 ".\\compiler.y"
     { strcpy((yyval.nd_obj2).name, (yyvsp[(1) - (1)].nd_obj).name); char *id_type = get_type((yyvsp[(1) - (1)].nd_obj).name); sprintf((yyval.nd_obj2).type, id_type); check_declaration((yyvsp[(1) - (1)].nd_obj).name); (yyval.nd_obj2).nd = mknode(NULL, NULL, (yyvsp[(1) - (1)].nd_obj).name); }
     break;
 
   case 57:
 
 /* Line 1455 of yacc.c  */
-#line 308 ".\\compiler.y"
+#line 310 ".\\compiler.y"
     { add('K'); }
     break;
 
   case 58:
 
 /* Line 1455 of yacc.c  */
-#line 308 ".\\compiler.y"
+#line 310 ".\\compiler.y"
     { check_return_type((yyvsp[(3) - (4)].nd_obj2).name); (yyvsp[(1) - (4)].nd_obj).nd = mknode(NULL, NULL, "return"); (yyval.nd_obj).nd = mknode((yyvsp[(1) - (4)].nd_obj).nd, (yyvsp[(3) - (4)].nd_obj2).nd, "RETURN"); }
     break;
 
   case 59:
 
 /* Line 1455 of yacc.c  */
-#line 309 ".\\compiler.y"
+#line 311 ".\\compiler.y"
     { (yyval.nd_obj).nd = NULL; }
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2045 "y.tab.c"
+#line 2046 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2253,7 +2254,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 312 ".\\compiler.y"
+#line 314 ".\\compiler.y"
 
 
 int main(int argc, char *argv[]) {
@@ -2267,7 +2268,6 @@ int main(int argc, char *argv[]) {
 	{
 			printf("\nPARSING FAILED!\n\n\n");
 	};
-    yyparse();
     printf("\n\n");
 	printf("\t\t\t\t\t\t\t\t PHASE 1: LEXICAL ANALYSIS \n\n");
 	printf("\nSYMBOL   DATATYPE   TYPE   LINE NUMBER \n");
@@ -2428,6 +2428,7 @@ struct node* mknode(struct node *left, struct node *right, char *token) {
 }
 
 void print_tree(struct node* tree) {
+	// print_tree_util(tree, 0);
 	printf("\n\nInorder traversal of the Parse Tree is: \n\n");
 	print_inorder(tree);
 }
@@ -2443,11 +2444,22 @@ void print_inorder(struct node *tree) {
 	}
 }
 
+void print_tree_util(struct node *root, int space) {
+    if(root == NULL)
+        return;
+    space += 7;
+    print_tree_util(root->right, space);
+    for (int i = 7; i < space; i++)
+        printf(" ");
+	printf("%s\n", root->token);
+    print_tree_util(root->left, space);
+}
+
 void insert_type() {
 	strcpy(type, yytext);
 }
 
 void yyerror(const char* msg) {
-    fprintf(stderr, "%s\n", msg);
+    fprintf(stderr,"%s\n",msg);
 }
 

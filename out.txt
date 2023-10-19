@@ -1,0 +1,51 @@
+
+PARSING COMPLETE
+
+
+
+
+								 PHASE 1: LEXICAL ANALYSIS 
+
+
+SYMBOL   DATATYPE   TYPE   LINE NUMBER 
+_______________________________________
+
+#include <stdio.h>		Header	0	
+#include <string.h>		Header	1	
+main	int	Function	3	
+for	N/A	Keyword		5	
+i	int	Variable	5	
+0	CONST	Constant	5	
+10	CONST	Constant	5	
+printf	N/A	Keyword		7	
+return	N/A	Keyword		10	
+1	CONST	Constant	10	
+
+
+								 PHASE 2: SYNTAX ANALYSIS 
+
+
+
+Inorder traversal of the Parse Tree is: 
+
+#include <stdio.h>, headers, #include <string.h>, program, i, declaration, 0, CONDITION, i, <, 10, CONDITION, i, ITERATOR, ++, for, printf, main, return, RETURN, 1, 
+
+
+
+								 PHASE 3: SEMANTIC ANALYSIS 
+
+Semantic analysis completed with no errors
+
+							   PHASE 4: INTERMEDIATE CODE GENERATION 
+
+i = 0
+
+LABEL L0:
+
+if NOT (i < 10) GOTO L1
+t1 = i + 1
+i = t0
+LABEL L0:
+JUMP to L1
+
+
