@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int a=1;
+    if(a==1){
+        printf("anser");
+    }else{
+        printf("not anser");
+    }
+}

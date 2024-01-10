@@ -76,13 +76,16 @@
 
 %%
 
-program: headers main '(' ')' '{' body return '}' { $2.nd = mknode($6.nd, $7.nd, "main"); $$.nd = mknode($1.nd, $2.nd, "program"); 
+program: headers main '(' ')' '{' body return '}' { 
+	$2.nd = mknode($6.nd, $7.nd, "main"); 
+	$$.nd = mknode($1.nd, $2.nd, "program"); 
     head = $$.nd;
-    is_for = 0; // Add this line to reset the flag
+    is_for = 0;
 }
 ;
 
-headers: headers headers { $$.nd = mknode($1.nd, $2.nd, "headers"); }
+headers: headers headers { 
+	$$.nd = mknode($1.nd, $2.nd, "headers"); }
 | INCLUDE { add('H'); } { $$.nd = mknode(NULL, NULL, $1.name); }
 ;
 
